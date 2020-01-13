@@ -1,0 +1,17 @@
+import gql from 'graphql-tag'
+
+export const GET_POKEMONS = gql`
+  query getPokemons() {
+    getPokemons {
+      id
+      number
+      name,
+      image,
+       evolutions {
+        id,
+        number,
+        name,
+        image
+      }
+    }
+  }
