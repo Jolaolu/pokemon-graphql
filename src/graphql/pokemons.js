@@ -9,3 +9,11 @@ export const GET_POKEMONS = gql`
       image
     }
   }`
+
+export const FIND_POKEMON = gql`
+  query searchPokemon($searchText: String!){
+      searchPokemon(){
+
+      }
+  }
+`
