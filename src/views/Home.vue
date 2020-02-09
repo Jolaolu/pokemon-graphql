@@ -20,12 +20,13 @@
 
 <script>
 // @ is an alias to /src
-import { GET_POKEMONS, FIND_POKEMON } from '@/graphql/pokemons.js'
+import { GET_POKEMONS, GET_POKEMON } from '@/graphql/pokemons.js'
 
 export default {
   name: 'home',
   data () {
     return {
+      pokemon: [],
       pokemons: [],
       error: null,
       context: null,
@@ -40,7 +41,9 @@ export default {
   methods: {
     getSearchQuery: function (searchQuery) {
       this.searchQuery = searchQuery
-    }
+      this.getPokemon()
+    },
+    getPokemon: function () {}
   },
   async mounted () {
 
@@ -58,8 +61,16 @@ export default {
       },
       loadingKey: 'loading'
     },
-    search: {
-      query: FIND_POKEMON,
+    pokemon: {
+      query: GET_POKEMON,
+      variables () {
+        return {
+          name: this.searchQuery
+        }
+      },
+      skip () {
+        return !this.searchQuery
+      },
       error (error) {
         this.error = JSON.stringify(error.message)
         this.context = 'error'

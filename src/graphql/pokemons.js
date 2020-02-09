@@ -10,10 +10,12 @@ export const GET_POKEMONS = gql`
     }
   }`
 
-export const FIND_POKEMON = gql`
-  query searchPokemon($searchText: String!){
-      searchPokemon(){
-
+export const GET_POKEMON = gql`
+  query Pokemon($name: String!){
+      Pokemon(name: $name){
+        id
+        name
+        image
       }
   }
 `
